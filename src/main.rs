@@ -16,9 +16,9 @@ async fn play(month: u32) {
 
 #[tokio::main]
 async fn main() {
-    // play(11).await;
-    let handle1 = tokio::spawn(play(3));
-    let handle2 = tokio::spawn(play(4));
+    play(11).await;
+    // let handle1 = tokio::spawn(play(3));
+    // let handle2 = tokio::spawn(play(4));
     
-    tokio::try_join!(handle1, handle2).unwrap();
+    // tokio::try_join!(handle1, handle2).unwrap();
 }
