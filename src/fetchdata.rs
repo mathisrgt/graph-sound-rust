@@ -9,7 +9,7 @@ pub struct DataVariation {
 
 pub async fn fetch_data_and_return_percentage_variations(month: u32) -> Result<Vec<DataVariation>, Box<dyn std::error::Error>> {
     let base_url = "https://api.currencyapi.com/v3/historical";
-    let api_key = "cur_live_x63tpwnxpzFTNazJjzj0f7C8EZEF40T7LptaLIkY";
+    let api_key = "cur_live_dAi66m8hGjlT9ndFmeX6aXgnYZzDkH8nbrH34He0";
     let base_currency = "BTC";
     let currency = "USD";
 
@@ -27,7 +27,7 @@ pub async fn fetch_data_and_return_percentage_variations(month: u32) -> Result<V
     let mut previous_value: Option<f64> = None;
 
     for day in 14..=25 {
-        let date = format!("2023-{:02}-{:02}", month, day);
+        let mut date = format!("2023-{:02}-{:02}", month, day);
 
         let url = format!(
             "{}?apikey={}&currencies={}&base_currency={}&date={}",
@@ -46,6 +46,7 @@ pub async fn fetch_data_and_return_percentage_variations(month: u32) -> Result<V
         if let Some(current_value) = json_response["data"][currency]["value"].as_f64() {
             if let Some(prev_value) = previous_value {
                 let percentage_variation = ((current_value - prev_value) / prev_value * 100.0).round() as i64;
+                date = format!("\"2023-{:02}-{:02}\"", month, day);
                 percentage_variations.push(DataVariation { date, percentage_variation });
             }
             previous_value = Some(current_value);
