@@ -2,8 +2,6 @@
 
 A Rust project that generates data graphs and produces melodic sounds based on percentage variations.
 
-![Graph Sound Rust Demo](demo.gif)
-
 ## 📖 Introduction
 
 This project uses Rust with and Rodio for sound generation and Actix Web to create a web server. It fetches percentage variation data from an external source (in this example, Bitcoin price data against the US dollar), generates melodic sounds based on these variations and displays it in the form of graphs.
